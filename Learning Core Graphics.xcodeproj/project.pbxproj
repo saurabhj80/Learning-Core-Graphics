@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1FAD74141AF9F16F00CFE7DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD74131AF9F16F00CFE7DE /* AppDelegate.swift */; };
-		1FAD74161AF9F16F00CFE7DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD74151AF9F16F00CFE7DE /* ViewController.swift */; };
 		1FAD74191AF9F16F00CFE7DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD74171AF9F16F00CFE7DE /* Main.storyboard */; };
 		1FAD741B1AF9F16F00CFE7DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD741A1AF9F16F00CFE7DE /* Images.xcassets */; };
 		1FAD741E1AF9F16F00CFE7DE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FAD741C1AF9F16F00CFE7DE /* LaunchScreen.xib */; };
 		1FAD742A1AF9F16F00CFE7DE /* Learning_Core_GraphicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD74291AF9F16F00CFE7DE /* Learning_Core_GraphicsTests.swift */; };
+		1FAD74351AF9F2FD00CFE7DE /* SJView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD74341AF9F2FD00CFE7DE /* SJView.swift */; };
+		1FAD74371AF9F73E00CFE7DE /* MainVCTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD74361AF9F73E00CFE7DE /* MainVCTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +30,14 @@
 		1FAD740E1AF9F16F00CFE7DE /* Learning Core Graphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learning Core Graphics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD74121AF9F16F00CFE7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FAD74131AF9F16F00CFE7DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1FAD74151AF9F16F00CFE7DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1FAD74181AF9F16F00CFE7DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FAD741A1AF9F16F00CFE7DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1FAD741D1AF9F16F00CFE7DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1FAD74231AF9F16F00CFE7DE /* Learning Core GraphicsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Learning Core GraphicsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAD74281AF9F16F00CFE7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FAD74291AF9F16F00CFE7DE /* Learning_Core_GraphicsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Learning_Core_GraphicsTests.swift; sourceTree = "<group>"; };
+		1FAD74341AF9F2FD00CFE7DE /* SJView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SJView.swift; path = View/SJView.swift; sourceTree = "<group>"; };
+		1FAD74361AF9F73E00CFE7DE /* MainVCTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainVCTableViewController.swift; path = Controller/MainVCTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +79,10 @@
 		1FAD74101AF9F16F00CFE7DE /* Learning Core Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				1FAD74331AF9F2EA00CFE7DE /* View */,
 				1FAD74131AF9F16F00CFE7DE /* AppDelegate.swift */,
-				1FAD74151AF9F16F00CFE7DE /* ViewController.swift */,
 				1FAD74171AF9F16F00CFE7DE /* Main.storyboard */,
+				1FAD74361AF9F73E00CFE7DE /* MainVCTableViewController.swift */,
 				1FAD741A1AF9F16F00CFE7DE /* Images.xcassets */,
 				1FAD741C1AF9F16F00CFE7DE /* LaunchScreen.xib */,
 				1FAD74111AF9F16F00CFE7DE /* Supporting Files */,
@@ -110,6 +113,14 @@
 				1FAD74281AF9F16F00CFE7DE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1FAD74331AF9F2EA00CFE7DE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1FAD74341AF9F2FD00CFE7DE /* SJView.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,8 +223,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FAD74161AF9F16F00CFE7DE /* ViewController.swift in Sources */,
+				1FAD74351AF9F2FD00CFE7DE /* SJView.swift in Sources */,
 				1FAD74141AF9F16F00CFE7DE /* AppDelegate.swift in Sources */,
+				1FAD74371AF9F73E00CFE7DE /* MainVCTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +355,7 @@
 				INFOPLIST_FILE = "Learning Core Graphics/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -353,6 +366,7 @@
 				INFOPLIST_FILE = "Learning Core Graphics/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
