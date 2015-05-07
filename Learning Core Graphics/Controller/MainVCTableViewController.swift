@@ -14,17 +14,17 @@ class MainVCTableViewController: UITableViewController {
     private let reuse_Identifier = "Cell"
     
     // Data Source
-    private let arr = ["Rectangles", "Alpha", "Line"]
+    private let arr = ["Rectangles", "Alpha", "Line", "Ratings"]
     
     // New View Controller
-    private var secondVC: UIViewController!
+    private var secondVC: SecondViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
         // Initialize the vc
-        secondVC = UIViewController()
+        secondVC = SecondViewController()
     }
 }
 
@@ -52,19 +52,49 @@ extension MainVCTableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        self.navigationController?.pushViewController(secondVC, animated: false)
+
+        let width = CGRectGetWidth(view.bounds)
+        let height = CGRectGetHeight(view.bounds)
+        
+        let frame = CGRectMake(0, 0, width, height)
+        
         switch indexPath.row {
         case 0:
-            secondVC.view = SJRectangleView()
+            secondVC.sj_view = SJRectangleView(frame: frame)
         case 1:
-            secondVC.view = SJAlphaRectangle()
+            secondVC.sj_view = SJAlphaRectangle(frame: frame)
         case 2:
-            secondVC.view = SJLine()
+            secondVC.sj_view = SJLine(frame: frame)
+        case 3:
+            secondVC.sj_view = SJRatingView(frame: CGRectMake(100, 100, 200, 40))
         default:
             return
         }
         
-        self.navigationController?.pushViewController(secondVC, animated: true)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
 }
+
+
+class SecondViewController: UIViewController {
+    
+    var sj_view: UIView? {
+        didSet{
+            deleteSubViews()
+            view.addSubview(sj_view!)
+        }
+    }
+    
+    private func deleteSubViews() {
+        for v in view.subviews {
+            v.removeFromSuperview()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
+
+

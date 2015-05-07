@@ -8,7 +8,33 @@
 
 import UIKit
 
-class SJRectangleView: UIView {
+/*******************************
+    Base view for init
+*******************************/
+
+class SJBaseView: UIView {
+    
+    init() {
+        assert(false, "Use Init with Frame")
+        super.init(frame: CGRectZero)
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+}
+
+
+/*******************************
+        Rectangle
+*******************************/
+
+class SJRectangleView: SJBaseView {
     
     override func drawRect(rect: CGRect) {
         
@@ -61,8 +87,11 @@ class SJRectangleView: UIView {
 
 }
 
+/*******************************
+        Aplha Rectangle
+*******************************/
 
-class SJAlphaRectangle: UIView {
+class SJAlphaRectangle: SJBaseView {
     
     var numberOfRects: Int = 6 {
         didSet {
@@ -104,7 +133,12 @@ class SJAlphaRectangle: UIView {
     }
 }
 
-class SJLine: UIView {
+
+/*******************************
+            Lines
+*******************************/
+
+class SJLine: SJBaseView {
     
     override func drawRect(rect: CGRect) {
         
@@ -144,6 +178,84 @@ class SJLine: UIView {
         CGContextMoveToPoint(context, startPoint.x, startPoint.y)
         CGContextAddLineToPoint(context, startPoint.x + CGRectGetWidth(bounds), startPoint.y)
         CGContextDrawPath(context, kCGPathStroke)
+    }
+}
+
+/*******************************
+        Ratings - Star View
+*******************************/
+class SJRatingView: SJBaseView {
+    
+    private var numberOfStars = 5 {
+        didSet{
+            setNeedsDisplay()
+        }
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setUp()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUp()
+    }
+    
+    private func setUp() {
+        
+        backgroundColor = UIColor.whiteColor()
+        
+        let width = CGRectGetWidth(bounds)
+        let height = CGRectGetHeight(bounds)
+        let starWidth = width/CGFloat(numberOfStars) - 2
+        
+        for var i = 0; i < numberOfStars; i++ {
+            let xOffset:CGFloat = CGFloat(i * (Int(width)/numberOfStars))
+            addSubview(SJStar(frame: CGRect(x: xOffset+2, y: 0, width: starWidth, height: height)))
+        }
+    }
+    
+    
+    private class SJStar: UIView {
+        
+        required init(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+        }
+        
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            setUp()
+        }
+        
+        private func setUp() {
+            backgroundColor = UIColor.whiteColor()
+        }
+        
+        private override func drawRect(rect: CGRect) {
+            
+            let context = UIGraphicsGetCurrentContext()
+            let width = CGRectGetWidth(bounds)
+            let height = CGRectGetHeight(bounds)
+            let side = CGFloat(Double(width/2)/cos(36*M_PI/180))
+            
+            CGContextSetRGBStrokeColor(context, 1, 0, 0, 1)
+            CGContextSetRGBFillColor(context, 1, 0, 0, 1)
+            
+            let point1 = CGPointMake(0, 0)
+            let point2 = CGPointMake(-width/2, CGFloat(Double(width/2)/tan(54*M_PI/180)))
+            let point3 = CGPointMake(-side/2, height)
+            let point4 = CGPointMake(side/2, height)
+            let point5 = CGPointMake(width/2, CGFloat(Double(width/2)/tan(54*M_PI/180)))
+            
+            let points = [point1, point3, point5, point2, point4, point1]
+            
+            CGContextTranslateCTM(context, width/2, 0)
+            CGContextMoveToPoint(context, point1.x, point1.y)
+            CGContextAddLines(context, points, points.count)
+            CGContextDrawPath(context, kCGPathFill)
+        }
+        
     }
 }
 
