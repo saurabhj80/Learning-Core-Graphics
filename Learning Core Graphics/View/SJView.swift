@@ -21,12 +21,17 @@ class SJBaseView: UIView {
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setUp()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setUp()
     }
     
+    private func setUp() {
+        backgroundColor = UIColor.whiteColor()
+    }
 }
 
 
@@ -149,7 +154,7 @@ class SJLine: SJBaseView {
         CGContextSetLineWidth(context, 4.0)
         
         // Set white color
-        CGContextSetRGBStrokeColor(context, 1, 1, 1, 1)
+        CGContextSetRGBStrokeColor(context, 1, 0, 0, 1)
         
         var arr: [CGFloat] = [12.0, 6.0, 5.0, 6.0, 5.0, 6.0]
         
@@ -202,9 +207,8 @@ class SJRatingView: SJBaseView {
         setUp()
     }
     
-    private func setUp() {
-        
-        backgroundColor = UIColor.whiteColor()
+    private override func setUp() {
+        super.setUp()
         
         let width = CGRectGetWidth(bounds)
         let height = CGRectGetHeight(bounds)
