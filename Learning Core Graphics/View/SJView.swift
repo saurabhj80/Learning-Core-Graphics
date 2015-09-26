@@ -19,7 +19,7 @@ class SJBaseView: UIView {
         super.init(frame: CGRectZero)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setUp()
     }
@@ -44,7 +44,9 @@ class SJRectangleView: SJBaseView {
     override func drawRect(rect: CGRect) {
         
         // Get the current context
-        let context = UIGraphicsGetCurrentContext()
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
         
         // Dimensions to be drawn
         let rectangle = CGRect(x: 100, y: 100, width: 100, height: 50)
@@ -52,26 +54,26 @@ class SJRectangleView: SJBaseView {
         // Rectangle 1
         createPath(context, rect: rectangle)
         CGContextSetRGBFillColor(context, 0, 0, 0.5, 0.5)
-        CGContextDrawPath(context, kCGPathFill)
+        CGContextDrawPath(context, CGPathDrawingMode.Fill)
         
         // Rectangle 2
         CGContextTranslateCTM(context, 120, 0)
         createPath(context, rect: rectangle)
         CGContextSetRGBStrokeColor(context, 1, 0, 0, 1)
         CGContextSetLineWidth(context, 3.0)
-        CGContextDrawPath(context, kCGPathStroke)
+        CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         
         // Rectangle 3
         CGContextTranslateCTM(context, -120, 100)
         createPath(context, rect: rectangle)
-        CGContextDrawPath(context, kCGPathFillStroke)
+        CGContextDrawPath(context, CGPathDrawingMode.FillStroke)
         
         // Rectangle 4
         CGContextTranslateCTM(context, 120, 0)
         createPath(context, rect: rectangle)
-        CGContextDrawPath(context, kCGPathStroke)
+        CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         createPath(context, rect: rectangle)
-        CGContextDrawPath(context, kCGPathFill)
+        CGContextDrawPath(context, CGPathDrawingMode.Fill)
     }
     
     // Creates a rectangle path
@@ -148,7 +150,9 @@ class SJLine: SJBaseView {
     override func drawRect(rect: CGRect) {
         
         // Get the current context
-        let context = UIGraphicsGetCurrentContext()
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
         
         // Set the line width
         CGContextSetLineWidth(context, 4.0)
@@ -182,7 +186,7 @@ class SJLine: SJBaseView {
         CGContextBeginPath(context)
         CGContextMoveToPoint(context, startPoint.x, startPoint.y)
         CGContextAddLineToPoint(context, startPoint.x + CGRectGetWidth(bounds), startPoint.y)
-        CGContextDrawPath(context, kCGPathStroke)
+        CGContextDrawPath(context, CGPathDrawingMode.Stroke)
     }
 }
 
@@ -213,7 +217,7 @@ class SJRatingView: SJBaseView {
     
     private class SJStar: UIView {
         
-        required init(coder aDecoder: NSCoder) {
+        required init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
         }
         
@@ -247,7 +251,7 @@ class SJRatingView: SJBaseView {
             CGContextTranslateCTM(context, width/2, 0)
             CGContextMoveToPoint(context, point1.x, point1.y)
             CGContextAddLines(context, points, points.count)
-            CGContextDrawPath(context, kCGPathFill)
+            CGContextDrawPath(context, CGPathDrawingMode.Fill)
         }
         
     }

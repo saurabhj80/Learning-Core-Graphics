@@ -38,7 +38,7 @@ extension MainVCTableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuse_Identifier, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(reuse_Identifier, forIndexPath: indexPath) 
 
         // Configure the cell...
         cell.textLabel?.text = arr[indexPath.row]
